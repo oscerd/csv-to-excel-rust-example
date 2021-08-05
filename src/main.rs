@@ -11,7 +11,7 @@ pub fn convert_csv_to_excel(
 
     let mut wb = simple_excel_writer::Workbook::create(excel_path);
     let mut sheet = wb.create_sheet("Sheet 1");
-
+    
     wb.write_sheet(&mut sheet, |sw| {
         for result in rdr.records() {
             if let Ok(record) = result {
