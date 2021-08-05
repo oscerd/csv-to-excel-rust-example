@@ -1,5 +1,5 @@
 [package]
-name = "csv2xlsx"
+name = "csvtoxlsx"
 version = "0.0.1"
 authors = ["Andrea Cosentino"]
 edition = "2018"
