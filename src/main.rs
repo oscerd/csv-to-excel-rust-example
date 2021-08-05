@@ -9,12 +9,8 @@ pub fn convert_csv_to_excel(
         .flexible(true)
         .from_path(csv_path)?;
 
-    if csv_path.is_empty() {
-        println!("Wrong arg");
-    }
-
     let mut wb = simple_excel_writer::Workbook::create(excel_path);
-    let mut sheet = wb.create_sheet("Events");
+    let mut sheet = wb.create_sheet("Sheet 1");
 
     wb.write_sheet(&mut sheet, |sw| {
         for result in rdr.records() {
