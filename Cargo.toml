@@ -1,0 +1,9 @@
+[package]
+name = "csv2xlsx"
+version = "0.0.1"
+authors = ["Andrea Cosentino"]
+edition = "2018"
+
+[dependencies]
+simple_excel_writer = "0.1.7"
+csv = "1.1.5"
