@@ -1,3 +1,5 @@
+use std::process;
+
 pub fn convert_csv_to_excel(
     csv_path: &str,
     excel_path: &str,
@@ -33,6 +35,9 @@ pub fn convert_csv_to_excel(
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 { println!("Arguments must be provided") } ;
+    if (args.len() < 2) {
+        println!("Arguments must be provided");
+        process::exit(1)
+    } ;
     convert_csv_to_excel(&args[1], &args[2])
 }
