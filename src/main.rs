@@ -1,8 +1,8 @@
 use structopt::StructOpt;
 
-/// A basic example
+/// CSV to XLSX converter
 #[derive(StructOpt, Debug)]
-#[structopt(name = "basic")]
+#[structopt(name = "csvtoxlsx")]
 pub struct Opt {
 
     /// CSV Input file name
