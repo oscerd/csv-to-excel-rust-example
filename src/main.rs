@@ -40,5 +40,5 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args.len() >= 4 {
         sheet_name = &args[3];
     }
-    convert_csv_to_excel(&args[1], &args[2], &mut &sheet_name)
+    convert_csv_to_excel(&args[1], &args[2], &mut sheet_name)
 }
