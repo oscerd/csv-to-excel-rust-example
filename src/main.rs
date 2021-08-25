@@ -1,4 +1,14 @@
 use structopt::StructOpt;
+use clap::arg_enum;
+
+arg_enum! {
+    #[derive(Debug,PartialEq)]
+    enum Separator {
+        Comma,
+        Semicolon,
+        Point
+    }
+}
 
 /// CSV to XLSX converter
 #[derive(StructOpt, Debug)]
@@ -19,8 +29,8 @@ pub struct Opt {
     sheet_name: String,
 
     /// Separator
-    #[structopt(default_value = "Comma", short="s" , long="separator", possible_values=&["Comma", "Semicolon", "Point"])]
-    separator: String,
+    #[structopt(default_value = "Comma" , short="s", long="separator", possible_values = &Separator::variants(), case_insensitive = true)]
+    separator: Separator,
 }
 
 
@@ -28,13 +38,13 @@ pub fn convert_csv_to_excel(
     opt: &Opt
 ) -> Result<(), Box<dyn std::error::Error>> {
     let mut delimiter = b',';
-    if &opt.separator == "Comma" {
+    if opt.separator == Separator::Comma {
         delimiter = b','
     }
-    if &opt.separator == "Semicolon" {
+    if opt.separator == Separator::Semicolon {
         delimiter = b';'
     }
-    if &opt.separator == "Point" {
+    if opt.separator == Separator::Point {
         delimiter = b'.'
     }
     let mut rdr = csv::ReaderBuilder::new()
