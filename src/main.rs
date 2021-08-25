@@ -15,7 +15,7 @@ pub struct Opt {
 
     // Sheet name
     /// Sheet Name
-    #[structopt(default_value = "Worksheet")]
+    #[structopt(default_value = "Worksheet", short ="w", long ="sheet_name")]
     sheet_name: String,
 
     /// Separator
