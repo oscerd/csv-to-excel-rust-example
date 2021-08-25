@@ -17,14 +17,29 @@ pub struct Opt {
     /// Sheet Name
     #[structopt(default_value = "Worksheet")]
     sheet_name: String,
+
+    /// Separator
+    #[structopt(default_value = "Comma", short="s" , long="separator", possible_values=&["Comma", "Semicolon", "Point"])]
+    separator: String,
 }
 
 
 pub fn convert_csv_to_excel(
     opt: &Opt
 ) -> Result<(), Box<dyn std::error::Error>> {
+    let mut delimiter = b',';
+    if &opt.separator == "Comma" {
+        delimiter = b','
+    }
+    if &opt.separator == "Semicolon" {
+        delimiter = b';'
+    }
+    if &opt.separator == "Point" {
+        delimiter = b'.'
+    }
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(false)
+        .delimiter(delimiter)
         .flexible(true)
         .from_path(&*opt.input)?;
 
