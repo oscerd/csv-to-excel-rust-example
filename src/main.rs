@@ -37,16 +37,12 @@ pub struct Opt {
 pub fn convert_csv_to_excel(
     opt: &Opt
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let mut delimiter = b',';
-    if opt.separator == Separator::Comma {
-        delimiter = b','
-    }
-    if opt.separator == Separator::Semicolon {
-        delimiter = b';'
-    }
-    if opt.separator == Separator::Point {
-        delimiter = b'.'
-    }
+    let delimiter = match opt.separator {
+        // The arms of a match must cover all the possible values
+        Separator::Comma => b',',
+        Separator::Semicolon => b';',
+        Separator::Point => b'.'
+    };
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(false)
         .delimiter(delimiter)
