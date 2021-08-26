@@ -6,7 +6,7 @@ arg_enum! {
     enum Separator {
         Comma,
         Semicolon,
-        Point
+        Period
     }
 }
 
@@ -41,7 +41,7 @@ pub fn convert_csv_to_excel(
         // The arms of a match must cover all the possible values
         Separator::Comma => b',',
         Separator::Semicolon => b';',
-        Separator::Point => b'.'
+        Separator::Period => b'.'
     };
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(false)
